@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="dateFormat" class="java.text.SimpleDateFormat">
+		<constructor-arg value="dd/MM/yyyy" />
+	</bean>
+
+	<bean id="emp0" class="com.cognizant.springlearn.Employee"
+		scope="prototype">
+		<property name="id" value="101" />
+		<property name="name" value="A" />
+		<property name="salary" value="100000000" />
+		<property name="dateOfBirth">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="26/05/1997" />
+			</bean>
+		</property>
+		<property name="dept" ref="dept0" />
+		<property name="skill" ref="skill0"/>
+	</bean>
+	<bean id="emp1" class="com.cognizant.springlearn.Employee"
+		scope="prototype">
+		<property name="id" value="102" />
+		<property name="name" value="B" />
+		<property name="salary" value="100000000" />
+		<property name="dateOfBirth">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="26/05/1997" />
+			</bean>
+		</property>
+		<property name="dept" ref="dept1" />
+		<property name="skill" ref="skill1"/>
+	</bean>
+	<bean id="emp2" class="com.cognizant.springlearn.Employee"
+		scope="prototype">
+		<property name="id" value="103" />
+		<property name="name" value="C" />
+	<property name="salary" value="100000000" />
+		<property name="dateOfBirth">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="26/05/1997" />
+			</bean>
+		</property>
+		<property name="dept" ref="dept0" />
+		<property name="skill" ref="skill1"/>
+	</bean>
+	<bean id="emp3" class="com.cognizant.springlearn.Employee"
+		scope="prototype">
+		<property name="id" value="104" />
+		<property name="name" value="D" />
+	<property name="salary" value="100000000" />
+		<property name="dateOfBirth">
+			<bean factory-bean="dateFormat" factory-method="parse">
+			<constructor-arg value="26/05/1997" />
+			</bean>
+		</property>
+		<property name="dept" ref="dept1" />
+		<property name="skill" ref="skill0"/>
+	</bean>
+	<bean id="employeeList" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="emp0"></ref>
+				<ref bean="emp1"></ref>
+				<ref bean="emp2"></ref>
+				<ref bean="emp3"></ref>
+			</list>
+		</constructor-arg>
+	</bean>
+
+
+	<bean id="dept0" class="com.cognizant.springlearn.Department"
+		scope="prototype">
+		<property name="id" value="101" />
+		<property name="name" value="IT" />
+	</bean>
+	<bean id="dept1" class="com.cognizant.springlearn.Department"
+		scope="prototype">
+		<property name="id" value="102" />
+		<property name="name" value="CSE" />
+	</bean>
+
+
+	<bean id="skill0" class="com.cognizant.springlearn.Skill"
+		scope="prototype">
+		<property name="id" value="1" />
+		<property name="name" value="Spring" />
+	</bean>
+	<bean id="skill1" class="com.cognizant.springlearn.Skill"
+		scope="prototype">
+		<property name="id" value="2" />
+		<property name="name" value="React Naive" />
+	</bean>
+
+
+</beans>
